@@ -6,11 +6,11 @@ import java.io.FileReader;
 
 public class JSONFileParser implements FileParser{
     @Override
-    public void read() {
-        JSONParser parser = new JSONParser();
+    public void pars() {
+        JSONParser parser = new JSONParser();//here i have an error:(
         try {
 
-            Object obj = parser.parse(new FileReader("SI1.json"));
+            Object obj = parser.parse(new FileReader("SI1.json"));//also here there is an error
 
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray rows = jsonObject.getJSONArray("rows"); // Get all JSONArray rows
@@ -18,6 +18,7 @@ public class JSONFileParser implements FileParser{
             for(int i=0; i < rows.length(); i++) { // Loop over each each row
                 JSONObject row = rows.getJSONObject(i); // Get row object
                 JSONArray elements = row.getJSONArray("note"); // Get all elements for each row as an array
+                System.out.println("----------------------------");
 
                 for(int j=0; j < elements.length(); j++) { // Iterate each element in the elements array
                     JSONObject element =  elements.getJSONObject(j); // Get the element object

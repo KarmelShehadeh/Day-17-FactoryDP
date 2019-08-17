@@ -9,7 +9,7 @@ import java.io.File;
 
 public class XMLFileParser implements FileParser {
     @Override
-    public void read() {
+    public void pars() {
         try {
             File inputFile = new File("SI2.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

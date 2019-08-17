@@ -1,5 +1,5 @@
 public interface FileParser {
 
-    void read();
+    void pars();
 
 }
