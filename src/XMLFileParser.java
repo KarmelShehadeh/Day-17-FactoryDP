@@ -6,39 +6,42 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.io.FileWriter;
 
 public class XMLFileParser implements FileParser {
     @Override
     public void pars() {
         try {
+            FileWriter resultFile=new FileWriter("D:\\result.txt");//txt file to print the result in it
+
             File inputFile = new File("SI2.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
-            System.out.println("Type :" + doc.getDocumentElement().getNodeName());
+
+            resultFile.write("Type :" + doc.getDocumentElement().getNodeName());
             NodeList nList = doc.getElementsByTagName("note");
-            System.out.println("----------------------------");
+            resultFile.write("----------------------------");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
-                // System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
-                    System.out.println("to: "
+                    resultFile.write("to: "
                             + eElement.getAttribute("to"));
-                    System.out.println("from: "
+                    resultFile.write("from: "
                             + eElement
                             .getElementsByTagName("from")
                             .item(0)
                             .getTextContent());
-                    System.out.println("heading : "
+                    resultFile.write("heading : "
                             + eElement
                             .getElementsByTagName("heading")
                             .item(0)
                             .getTextContent());
-                    System.out.println("body : "
+                    resultFile.write("body : "
                             + eElement
                             .getElementsByTagName("body")
                             .item(0)
